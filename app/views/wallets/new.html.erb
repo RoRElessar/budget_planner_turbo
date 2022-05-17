@@ -1,0 +1,7 @@
+<%= turbo_frame_tag dom_id @wallet do %>
+  <div class='container text-center mt-5'>
+    <h3>New wallet</h3>
+
+    <%= render 'form', wallet: @wallet %>
+  </div>
+<% end %>

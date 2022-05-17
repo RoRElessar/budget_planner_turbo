@@ -1,0 +1,31 @@
+<div class="container">
+  <h2>Dashboard</h2>
+  <h2>Hello there, <%= current_user.email %></h2>
+  <h2>Profile</h2>
+
+  <%= link_to 'Reports', page_path('reports') %>
+
+  <%= link_to 'Back', home_path, class: 'btn btn-dark ml-3' %>
+  <%= link_to 'Create transaction', new_transaction_path, class: 'btn btn-dark ml-3' %>
+  <%= link_to 'Create wallet', new_wallet_path, class: 'btn btn-dark ml-3', data: { turbo_frame: 'new_wallet' } %>
+
+  <%= turbo_stream_from :wallets %>
+
+  <%= turbo_frame_tag :new_wallet %>
+
+  <%= turbo_frame_tag :wallets do %>
+    <div id="wallets-list" class='row'>
+      <h1 class='my-5'>All Wallets</h1>
+      <%= render @wallets %>
+    </div>
+  <% end %>
+</div>
+
+<div class='row'>
+  <h1 class='my-5'>All Transactions</h1>
+  <% @transactions.each do |transaction| %>
+    <div class='col-3'>
+      <%= render 'transactions/transaction', transaction: transaction %>
+    </div>
+  <% end %>
+</div>

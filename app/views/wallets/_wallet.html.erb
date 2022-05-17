@@ -1,0 +1,8 @@
+<%= turbo_frame_tag(dom_id(wallet), class: 'col-3') do %>
+  <div class="card p-3">
+    <p>Name: <%= wallet.name %></p>
+    <p>Currency: <%= wallet.currency %></p>
+    <p>Quantity: <%= wallet.quantity %></p>
+  </div>
+  <br>
+<% end %>

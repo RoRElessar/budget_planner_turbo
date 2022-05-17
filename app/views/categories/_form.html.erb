@@ -1,0 +1,16 @@
+<%= form_with(model: category) do |f| %>
+  <div>
+    <%= f.label :title, class: 'd-block' %>
+    <%= f.text_field :title %>
+  </div>
+
+  <div>
+    <%= f.label :image, class: 'd-block' %>
+    <%= f.text_field :image %>
+  </div>
+
+  <div class='mt-3'>
+    <%= f.submit 'Save', class: 'btn btn-dark' %>
+    <%= link_to 'Back', :back, class: 'btn btn-dark' %>
+  </div>
+<% end %>

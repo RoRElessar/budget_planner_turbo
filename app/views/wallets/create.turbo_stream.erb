@@ -1,0 +1,11 @@
+<% if @wallet.errors.present? %>
+  <%= notice_stream(message: :error, status: 'red') %>
+  <%= form_wallet_stream(wallet: @wallet) %>
+<% else %>
+  <%= notice_stream(message: :create, status: 'green') %>
+  <%= turbo_stream.replace(:new_wallet) do %>
+    <%= turbo_frame_tag :new_wallet %>
+  <% end %>
+  <%#= turbo_stream.append 'wallets-list', partial: 'wallet', locals: { wallet: @wallet } %>
+  <%= Turbo::StreamsChannel.broadcast_append_to 'wallets', target: 'wallets-list', partial: 'wallets/wallet', locals: { wallet: @wallet } %>
+<% end %>
